@@ -63,3 +63,35 @@ public class SwaggerConfig {
 > 访问: http://localhost:8000/swagger-ui/
 
 ![1](./docs/1.jpg)
+
+## 使用场景
+
+#### 整合spring security使用
+
+如何访问需要登录认证的接口？只需在访问接口时添加一个合法的Authorization请求头即可
+
+> 参考: [https://blog.csdn.net/sunxiaoju/article/details/110751151](https://blog.csdn.net/sunxiaoju/article/details/110751151)
+
+```
+ @Bean
+    public Docket createRestApi() {
+        return new Docket(DocumentationType.OAS_30)
+                ...
+                .securitySchemes(securitySchemes()) // 授权信息设置，必要的header token等认证信息
+                .securityContexts(securityContexts()); // 授权信息全局应用
+    }
+
+// 设置授权信息
+private List<SecurityScheme> securitySchemes() {
+    return Collections.singletonList(new ApiKey("BASE_TOKEN", "token", "header"));
+}
+
+// 授权信息全局应用
+private List<SecurityContext> securityContexts() {
+    return Collections.singletonList(
+            SecurityContext.builder()
+                    .securityReferences(Collections.singletonList(new SecurityReference("BASE_TOKEN", new AuthorizationScope[]{new AuthorizationScope("global", "")})))
+                    .build()
+    );
+}
+```
