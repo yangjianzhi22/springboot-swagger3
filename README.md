@@ -83,14 +83,14 @@ public class SwaggerConfig {
 
 // 设置授权信息
 private List<SecurityScheme> securitySchemes() {
-    return Collections.singletonList(new ApiKey("BASE_TOKEN", "token", "header"));
+    return Collections.singletonList(new ApiKey("token", "token", "header"));
 }
 
 // 授权信息全局应用
 private List<SecurityContext> securityContexts() {
     return Collections.singletonList(
             SecurityContext.builder()
-                    .securityReferences(Collections.singletonList(new SecurityReference("BASE_TOKEN", new AuthorizationScope[]{new AuthorizationScope("global", "")})))
+                    .securityReferences(Collections.singletonList(new SecurityReference("token", new AuthorizationScope[]{new AuthorizationScope("global", "")})))
                     .build()
     );
 }
