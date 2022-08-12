@@ -13,7 +13,7 @@ public class SwaggerConfig {
     public Docket createRestApi() {
         return new Docket(DocumentationType.OAS_30)
                 .select()
-                .apis(RequestHandlerSelectors.basePackage("package com.yang.swagger3.controller"))
+                .apis(RequestHandlerSelectors.basePackage("com.yang.swagger3.controller"))
                 .build();
     }
 }
