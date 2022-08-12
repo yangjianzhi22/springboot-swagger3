@@ -44,6 +44,22 @@ spring:
       matching-strategy: ant_path_matcher
 ```
 
+- 配置摘要信息
+
+```
+@Configuration
+public class SwaggerConfig {
+
+    @Bean
+    public Docket createRestApi() {
+        return new Docket(DocumentationType.OAS_30)
+                .select()
+                .apis(RequestHandlerSelectors.basePackage("package com.yang.swagger3.controller"))
+                .build();
+    }
+}
+```
+
 > 访问: http://localhost:8000/swagger-ui/
 
 ![1](./docs/1.jpg)
