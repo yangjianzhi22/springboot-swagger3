@@ -66,7 +66,7 @@ public class SwaggerConfig {
 
 ## 使用场景
 
-#### 整合spring security使用
+#### 1. 整合spring security使用
 
 如何访问需要登录认证的接口？只需在访问接口时添加一个合法的Authorization请求头即可
 
